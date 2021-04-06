@@ -1,0 +1,8 @@
+Interfaz Grafica
+https://www.youtube.com/watch?v=ddoPYppcppc
+https://www.youtube.com/watch?v=v1TroEO8afw
+https://recursospython.com/guias-y-manuales
+https://www.delftstack.com/es/howto/python-tkinter/how-to-change-the-tkinter-label-text/
+
+Enum: 
+https://www.youtube.com/watch?v=cen7oanRhYo
