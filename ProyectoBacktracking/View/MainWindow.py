@@ -1,7 +1,6 @@
 # IMPORTS
 #import tkinter as tk
-from tkinter import*
-
+from tkinter import *
 
 # CLASSES
 from tkinter.ttk import Combobox
