@@ -1,8 +1,8 @@
 # Imports
 from enum import Enum
 
-
-class Categorias(Enum):
+# This is the categories Enum
+class Categories(Enum):
 
     Sospechosos = ['El/la mejor amigo(a)', 'El/la novio(a)', 'El/la vecino(a)', 'El mensajero',
                    'El extraño', 'El/la hermanastro(a)', 'El/la colega de trabajo']

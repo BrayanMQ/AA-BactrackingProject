@@ -194,5 +194,12 @@ class Window:
             self.comboboxALGOR.configure(state="normal")
         return
 
+    def clearTextArea(self):
+        self.textSolution.delete("1.0", "end")
+        self.textRestriction.delete("1.0", "end")
+        self.entryRES.delete(0, END)
+        self.textProcedure.delete("1.0", "end")
+        return
+
     def main(self):
         self.window.mainloop()
