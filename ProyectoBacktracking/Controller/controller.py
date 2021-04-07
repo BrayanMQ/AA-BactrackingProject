@@ -4,12 +4,7 @@ from View.MainWindow import Window
 import random
 
 # Import de los enums
-from Model.EnumSospechosos import Sospechosos
-from Model.EnumArmas import Armas
-from Model.EnumMotivos import Motivos
-from Model.EnumPartesCuerpo import PartesCuerpo
-from Model.EnumLugares import Lugares
-
+from Model.enumCategorias import Categorias
 
 # CLASSES
 class Controller:
@@ -18,9 +13,6 @@ class Controller:
         '''
         Constructor
         '''
-
-        # Lista que contiene las categorías
-        self.categoryList = [Sospechosos, Armas, Motivos, PartesCuerpo, Lugares]
 
         # Lista que guarda la solución
         self.solution = []
@@ -39,13 +31,14 @@ class Controller:
         self.window.main()
 
     def createSolution(self):
-        # Obtiene la solución
-        for category in self.categoryList:
 
-            randomNumber = random.randint(1, len(category))
+        # Obtiene la solución
+        for category in Categorias:
+
+            randomNumber = random.randint(0, len(category.value) - 1)
 
             # Agrega la carta a la solución
-            self.solution.append(category(randomNumber).name)
+            self.solution.append(category.value[randomNumber])
 
     def solutionFunction(self):
         '''
@@ -80,18 +73,17 @@ class Controller:
         while i < (restrictionsAmount * 2):
 
             # Calcula el número random para obtener una categoría random
-            randomNumber = random.randint(0, 4)
-            randomCategory = self.categoryList[randomNumber]
+            randomCategory = random.choice(list(Categorias))
 
             # Calcula el número random para obtener una carta de la categoría
-            randomNumber = random.randint(1, len(randomCategory))
+            randomNumber = random.randint(0, len(randomCategory.value) - 1)
 
-            # Si la carta seleccionada no está en la solución, entonces la agrega a las restricciones
+            # Si la carta seleccionada no está en la sol ución, entonces la agrega a las restricciones
             # Sino, hace i-1 y busca de nuevo
-            if not randomCategory(randomNumber).name in self.solution \
-                    and not randomCategory(randomNumber).name in self.restrictions:
+            if not randomCategory.value[randomNumber] in self.solution \
+                    and not randomCategory.value[randomNumber] in self.restrictions:
                 # Agrega la restricción
-                self.restrictions.append(randomCategory(randomNumber).name)
+                self.restrictions.append(randomCategory.value[randomNumber])
                 i += 1
         return
 
