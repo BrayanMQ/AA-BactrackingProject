@@ -3,9 +3,9 @@ from enum import Enum
 
 
 class PartesCuerpo(Enum):
-    Cabeza = True
-    Pecho = True
-    Abdomen = True
-    Espalda = True
-    Piernas = True
-    Brazos = True
+    Cabeza = 1
+    Pecho = 2
+    Abdomen = 3
+    Espalda = 4
+    Piernas = 5
+    Brazos = 6

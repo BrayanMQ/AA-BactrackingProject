@@ -62,7 +62,7 @@ class Window:
         # Buttons
         self.buttonSolution = self.createButtons(self.frame,"Generate Solution", self.controller.solutionFunction,
         660, 40, 130, 35)
-        self.buttonRestriction = self.createButtons(self.frame, "Generate Restriction", self.controller.restrictionFunction,
+        self.buttonRestriction = self.createButtons(self.frame, "Generate Restrictions", self.controller.restrictionFunction,
         660, 145, 130, 35)
         self.buttonExecute = self.createButtons(self.frame,"Execute Algorithm", self.controller.procedureFunction,
         20, 520, 130, 35)

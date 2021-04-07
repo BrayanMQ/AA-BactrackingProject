@@ -3,12 +3,12 @@ from enum import Enum
 
 
 class Lugares(Enum):
-    Sala = True
-    Comedor = True
-    Banno = True
-    Terraza = True
-    Cuarto = True
-    Garage = True
-    Patio = True
-    Balcon = True
-    Cocina = True
+    Sala = 1
+    Comedor = 2
+    Banno = 3
+    Terraza = 4
+    Cuarto = 5
+    Garage = 6
+    Patio = 7
+    Balcon = 8
+    Cocina = 9
