@@ -3,7 +3,9 @@ from View.MainWindow import Window
 import random
 
 # Import de los enums
+import Model.enumCategories
 from Model.enumCategories import Categories
+from Model.Backtracking import Backtracking
 
 # CLASSES
 class Controller:
@@ -118,7 +120,20 @@ class Controller:
         Inputs:
         Outputs:
         '''
-        print("Procedure function")
+        # execute(0, len(solutionList)-1, [] , Categorias.listaCategories)
+        backtracking = Backtracking(self.solution, self.restrictions)
+
+        listCategories = []
+        for category in Categories:
+            listCategories2 = []
+            for card in category.value:
+                listCategories2.append(card)
+            listCategories.append(listCategories2)
+
+        lista = []
+        value = backtracking.execute(0, len(self.solution), lista, listCategories)
+        self.window.textProcedure.insert("insert", value)
+        #print("Procedure function")
         return
 
     def restoreFunction(self):

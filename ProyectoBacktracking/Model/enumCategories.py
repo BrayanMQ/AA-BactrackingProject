@@ -1,12 +1,17 @@
 # Imports
 from enum import Enum
 
+
 # This is the categories Enum
 class Categories(Enum):
-
     Sospechosos = ['El/la mejor amigo(a)', 'El/la novio(a)', 'El/la vecino(a)', 'El mensajero',
                    'El extraño', 'El/la hermanastro(a)', 'El/la colega de trabajo']
     Armas = ['Pistola', 'Cuchillo', 'Machete', 'Pala', 'Bate', 'Botella', 'Tubo', 'Cuerda']
     Motivos = ['Venganza', 'Celos', 'Dinero', 'Accidente', 'Drogas', 'Robo']
-    PartesCuerpo = ['Cabeza', 'Pecho', 'Abdomen', 'Espalda', 'Piernas', 'Lugar']
-    Lugares = ['Sala', 'Comedor', 'Baño', 'Terraza', 'Cuarto', 'Garage', 'Patio', 'Balcón']
+    PartesCuerpo = ['Cabeza', 'Pecho', 'Abdomen', 'Espalda', 'Piernas', 'Brazos']
+    Lugares = ['Sala', 'Comedor', 'Baño', 'Terraza', 'Cuarto', 'Garage', 'Patio', 'Balcón', 'Cocina']
+
+    def listCategories(self):
+        #lista = [Categories.Sospechosos.value, Categories.Armas.value, Categories.Motivos.value,
+        #        Categories.PartesCuerpo.value, Categories.Lugares.value]
+        return self.value

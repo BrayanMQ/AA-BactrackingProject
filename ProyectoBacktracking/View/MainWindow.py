@@ -52,7 +52,7 @@ class Window:
         #TextArea
         self.textSolution = self.createText(self.frame, 165, 20, 470, 70)
         self.textRestriction = self.createText(self.frame, 165, 110, 470, 70)
-        self.textProcedure = self.createText(self.frame, 20, 200, 400, 300)
+        self.textProcedure = self.createText(self.frame, 20, 200, 600, 300)
 
         #ComboBox
         self.comboboxALGOR = self.createComboBox(self.frame, 180, 520, 130, 35)
