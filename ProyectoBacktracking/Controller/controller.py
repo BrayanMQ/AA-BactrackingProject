@@ -6,6 +6,7 @@ import random
 import Model.enumCategories
 from Model.enumCategories import Categories
 from Model.Backtracking import Backtracking
+from timeit import default_timer
 
 # CLASSES
 class Controller:
@@ -121,6 +122,8 @@ class Controller:
         Outputs:
         '''
         # execute(0, len(solutionList)-1, [] , Categorias.listaCategories)
+
+
         backtracking = Backtracking(self.solution, self.restrictions)
 
         listCategories = []
@@ -130,11 +133,21 @@ class Controller:
                 listCategories2.append(card)
             listCategories.append(listCategories2)
 
-        #print(listCategories)
         lista = []
+
+        # Begin of time
+        begin = default_timer()
+
         value = backtracking.execute(0, len(self.solution), lista, listCategories)
+
+        # End of time
+        end = default_timer()
+
+
         self.window.textProcedure.insert("insert", value)
-        #print("Procedure function")
+        print(value)
+
+        print("\n\nTiempo de ejecución: %f" % (end-begin))
         return
 
     def restoreFunction(self):
