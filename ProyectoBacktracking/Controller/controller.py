@@ -130,6 +130,7 @@ class Controller:
                 listCategories2.append(card)
             listCategories.append(listCategories2)
 
+        #print(listCategories)
         lista = []
         value = backtracking.execute(0, len(self.solution), lista, listCategories)
         self.window.textProcedure.insert("insert", value)

@@ -1,6 +1,3 @@
-# Import
-from Model.enumCategories import Categories
-
 
 # Class
 class Backtracking:
@@ -14,19 +11,21 @@ class Backtracking:
         self.restrictionList = rList
         self.solutionFound = False
         self.stringResult = ""
+        self.cont = 0
 
     # i = 0, n = Tamaño de la solucion,  categoria = Lista de valores de una categoria
     # execute(0, len(solutionList)-1, [] , Categorias.listaCategories)
 
     def execute(self, i, n, listaAuxSolution, listCategories):
 
-        #print(listaAuxSolution)
         if i == n:
-            print(str(i), listaAuxSolution)
+            print(str(self.cont), listaAuxSolution)
+            self.cont += 1
             # Crea el string
             for card in listaAuxSolution:
                 self.stringResult += str(card) + ", "
-            self.stringResult[:-2]
+
+            #self.stringResult[:-2]
 
             if self.sameSolution(listaAuxSolution):
                 self.stringResult += " | Solución Correcta\n"
@@ -36,8 +35,6 @@ class Backtracking:
                 # restriccion de la carta
                 #
                 #
-
-            return self.stringResult
 
         else:
 
@@ -56,6 +53,8 @@ class Backtracking:
                         return self.stringResult
 
                     listaAuxSolution.pop()
+
+                break
 
         return self.stringResult
 

@@ -12,6 +12,4 @@ class Categories(Enum):
     Lugares = ['Sala', 'Comedor', 'Baño', 'Terraza', 'Cuarto', 'Garage', 'Patio', 'Balcón', 'Cocina']
 
     def listCategories(self):
-        #lista = [Categories.Sospechosos.value, Categories.Armas.value, Categories.Motivos.value,
-        #        Categories.PartesCuerpo.value, Categories.Lugares.value]
         return self.value
