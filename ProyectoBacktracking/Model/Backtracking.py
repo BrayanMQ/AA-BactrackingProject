@@ -52,7 +52,7 @@ class Backtracking:
                     if card not in self.solutionList and card not in self.restrictionList:
 
                         self.restrictionList.append(card)
-                        self.stringResult += " | Nueva restricción: " + card + "\n"
+                        self.stringResult += " | Nueva restricción: " + card + "\n\n"
 
                         # Flag used for knowing if a restriction card was add
                         self.restrictionAdded = True
@@ -64,7 +64,7 @@ class Backtracking:
 
                 # If flag is not on means that algorithm could not add a restriction
                 if not self.restrictionAdded:
-                    self.stringResult += " | No se agregó restricción.\n"
+                    self.stringResult += " | No se agregó restricción.\n\n"
                 else:
                     self.restrictionAdded = False
 

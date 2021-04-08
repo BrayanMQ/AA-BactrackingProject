@@ -8,6 +8,7 @@ from Model.enumCategories import Categories
 from Model.Backtracking import Backtracking
 from timeit import default_timer
 
+
 # CLASSES
 class Controller:
 
@@ -49,7 +50,6 @@ class Controller:
         # This is going to create a string with the solution before created
         solutionString = ''
         for card in self.solution:
-
             solutionString += card + ', '
 
         # This is going to remove the last two characters
@@ -77,8 +77,14 @@ class Controller:
         self.window.textRestriction.delete("1.0", "end")
 
         # Number of restrictions (each restriction is a pair of cards)
-        if self.window.entryRES.get() is not None:
+        if self.window.entryRES.get() == "":
+            self.window.showMessagesBox(1)
+            return
+        try:
             restrictionsAmount = int(self.window.entryRES.get())
+        except:
+            self.window.showMessagesBox(2)
+            return
 
         # Get reestrictions
         self.createRestrictions(restrictionsAmount)
@@ -90,7 +96,7 @@ class Controller:
         cont2 = 1
 
         # This is going to create a string with the solution before created
-        restrictionString = str(cont2)+"-"
+        restrictionString = str(cont2) + "-"
         for card in self.restrictions:
 
             # This is add the card and a comma to separate the restriction
@@ -105,7 +111,7 @@ class Controller:
                 restrictionString = restrictionString[:-2]
 
                 # This is going add the counter and a symbol to the string
-                restrictionString += "\n"+str(cont2)+"-"
+                restrictionString += "\n" + str(cont2) + "-"
 
         # This is going to remove the last two characters
         restrictionString = restrictionString[:-2]
@@ -121,11 +127,26 @@ class Controller:
         Inputs:
         Outputs:
         '''
+
+        algorithm = None
+
+        # This is going to select algorithm type
+        algorithmType = self.window.comboboxALGOR.get()
+        if algorithmType == "Backtracking":
+            algorithm = Backtracking(self.solution, self.restrictions)
+            print(algorithmType)
+
+        elif algorithmType == "Brute Force":
+            algorithm = Backtracking(self.solution, [])
+            print(algorithmType)
+
+        else:
+            self.window.showMessagesBox(3)
+            return
+
         # execute(0, len(solutionList)-1, [] , Categorias.listaCategories)
 
-
-        backtracking = Backtracking(self.solution, self.restrictions)
-
+        # This is going to create a list of enum categories
         listCategories = []
         for category in Categories:
             listCategories2 = []
@@ -133,21 +154,19 @@ class Controller:
                 listCategories2.append(card)
             listCategories.append(listCategories2)
 
-        lista = []
-
         # Begin of time
         begin = default_timer()
 
-        value = backtracking.execute(0, len(self.solution), lista, listCategories)
+        value = algorithm.execute(0, len(self.solution), [], listCategories)
 
         # End of time
         end = default_timer()
 
-
+        # This is going to set information of the procedure string to procedure text and execution time to execution
+        # label
         self.window.textProcedure.insert("insert", value)
-        print(value)
+        self.window.lblTime.config(text="Tiempo de ejecución: %f" % (end - begin) + " s")
 
-        print("\n\nTiempo de ejecución: %f" % (end-begin))
         return
 
     def restoreFunction(self):
@@ -176,6 +195,8 @@ class Controller:
         Outputs:
         '''
 
+        self.restrictions = []
+
         # Get restrictions
         i = 0
         while i < (restrictionsAmount * 2):
@@ -198,13 +219,15 @@ class Controller:
 
     def createSolution(self):
 
+        self.solution = []
+
         # Get the solution
         for category in Categories:
-
             randomNumber = random.randint(0, len(category.value) - 1)
 
             # Add the card to the solution
             self.solution.append(category.value[randomNumber])
+
 
 # This is going to create a controller and call main function
 if __name__ == '__main__':

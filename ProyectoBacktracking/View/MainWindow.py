@@ -1,14 +1,16 @@
 # IMPORTS
 #import tkinter as tk
 from tkinter import *
+from tkinter.ttk import Combobox
+from tkinter import messagebox
 
 # CLASSES
-from tkinter.ttk import Combobox
+
 
 
 class Window:
     PAD = 20
-    WIDHTWINDOW = 850
+    WIDHTWINDOW = 860
     HEIGHTWINDOW = 650
 
     # Componentes de la ventana
@@ -16,7 +18,8 @@ class Window:
     frame = None
     entryRES = None
     comboboxALGOR = None
-    lblSolution = lblRestriction = None
+    scrollVProcedure = None
+    lblSolution = lblRestriction = lblTime = None
     buttonSolution = buttonRestriction = buttonExecute = buttonRestore = None
     textSolution = textRestriction = textProcedure = None
 
@@ -45,28 +48,34 @@ class Window:
         # Labels
         self.lblSolution = self.createLabel(self.frame, "Solution: ", 20, 20, 120, 70)
         self.lblRestriction = self.createLabel(self.frame, "Restriction: ", 20, 110, 120, 70)
+        self.lblTime = self.createLabel(self.frame, "Tiempo Ejecución: ", 320, 540, 300, 35)
 
         #Entry
-        self.entryRES = self.createEntry(self.frame, 660, 110, 130, 35)
+        self.entryRES = self.createEntry(self.frame, 662, 110, 140, 30)
 
         #TextArea
         self.textSolution = self.createText(self.frame, 165, 20, 470, 70)
         self.textRestriction = self.createText(self.frame, 165, 110, 470, 70)
-        self.textProcedure = self.createText(self.frame, 20, 200, 600, 300)
+        self.textProcedure = self.createText(self.frame, 20, 200, 755, 320)
+
+        # ScrollBar
+        self.scrollVProcedure = self.createScroll(self.frame, VERTICAL, self.textProcedure.yview, 775, 200, 600, 320)
+        self.textProcedure.configure(yscrollcommand=self.scrollVProcedure.set)
 
         #ComboBox
-        self.comboboxALGOR = self.createComboBox(self.frame, 180, 520, 130, 35)
-        self.comboboxALGOR["values"] = ["Backtraking", "Brute Force"]
+        self.comboboxALGOR = self.createComboBox(self.frame, 180, 540, 130, 35)
+        self.comboboxALGOR["values"] = ["Backtracking", "Brute Force"]
+        self.comboboxALGOR.bind("<<ComboboxSelected>>", self.actionCombobox)
 
         # Buttons
         self.buttonSolution = self.createButtons(self.frame,"Generate Solution", self.controller.solutionFunction,
-        660, 40, 130, 35)
+        660, 40, 140, 35)
         self.buttonRestriction = self.createButtons(self.frame, "Generate Restrictions", self.controller.restrictionFunction,
-        660, 145, 130, 35)
+        660, 145, 140, 35)
         self.buttonExecute = self.createButtons(self.frame,"Execute Algorithm", self.controller.procedureFunction,
-        20, 520, 130, 35)
+        20, 540, 140, 35)
         self.buttonRestore = self.createButtons(self.frame, "Restore", self.controller.restoreFunction,
-        650, 520, 130, 35)
+        650, 538, 140, 35)
 
     def createWindow(self, pTitle, pBackground):
         '''
@@ -121,6 +130,14 @@ class Window:
         entry.place(x=pX, y=pY, width=pWidth, height=pHeight)
         return entry
 
+    def createScroll(self, pComponent, pOrient, pCommand, pX, pY, pWidth, pHeight):
+        scroll = Scrollbar(pComponent, orient=pOrient, command=pCommand)
+        if pOrient == HORIZONTAL:
+            scroll.place(x=pX, y=pY, pWidth=pWidth)
+        else:
+            scroll.place(x=pX, y=pY, height=pHeight)
+        return scroll
+
     def createText(self, pComponent, pX, pY, pWidth, pHeight):
         '''
         Function: This function is responsible for creating a TextArea
@@ -128,7 +145,7 @@ class Window:
         Outputs: TextArea
         '''
         text = Text(pComponent)
-        text.config(font=("Consolas", 12), bd=5)
+        text.config(font=("Consolas", 10), bd=5)
         text.place(x=pX, y=pY, width=pWidth, height=pHeight)
         return text
 
@@ -198,6 +215,20 @@ class Window:
         self.textSolution.delete("1.0", "end")
         self.textRestriction.delete("1.0", "end")
         self.entryRES.delete(0, END)
+        self.textProcedure.delete("1.0", "end")
+        return
+
+    def showMessagesBox(self, type):
+
+        if type == 1:
+            messagebox.showerror("Error", "Debe ingresar la cantidad de restricciones a utilizar")
+        elif type == 2:
+            messagebox.showerror("Error", "Debe ingresar solamente numeros enteros mayores a '0' ")
+        else:
+            messagebox.showerror("Error", "Debe seleccionar un tipo de algoritmo a utilizar")
+        return
+
+    def actionCombobox(self, eventObject):
         self.textProcedure.delete("1.0", "end")
         return
 
