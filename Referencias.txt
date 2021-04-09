@@ -3,6 +3,7 @@ https://www.youtube.com/watch?v=ddoPYppcppc
 https://www.youtube.com/watch?v=v1TroEO8afw
 https://recursospython.com/guias-y-manuales
 https://www.delftstack.com/es/howto/python-tkinter/how-to-change-the-tkinter-label-text/
+https://stackoverflow.com/questions/40641130/how-to-use-a-comboboxselected-virtual-event-with-tkinter
 
 Enum: 
 https://www.youtube.com/watch?v=cen7oanRhYo

@@ -5,7 +5,7 @@ import random
 # Import de los enums
 import Model.enumCategories
 from Model.enumCategories import Categories
-from Model.Backtracking import Backtracking
+from Model.Algorithm import Backtracking
 from timeit import default_timer
 
 

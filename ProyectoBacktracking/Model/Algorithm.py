@@ -2,7 +2,7 @@ import random
 
 
 # Class
-class Backtracking:
+class Algorithm:
 
     def __init__(self, sList, rList):
         '''
