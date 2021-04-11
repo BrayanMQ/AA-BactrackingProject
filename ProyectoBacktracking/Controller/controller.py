@@ -5,7 +5,7 @@ import random
 # Import de los enums
 import Model.enumCategories
 from Model.enumCategories import Categories
-from Model.Algorithm import Backtracking
+from Model.Algorithm import Algorithm
 from timeit import default_timer
 
 
@@ -133,11 +133,11 @@ class Controller:
         # This is going to select algorithm type
         algorithmType = self.window.comboboxALGOR.get()
         if algorithmType == "Backtracking":
-            algorithm = Backtracking(self.solution, self.restrictions)
+            algorithm = Algorithm(self.solution, self.restrictions)
             print(algorithmType)
 
         elif algorithmType == "Brute Force":
-            algorithm = Backtracking(self.solution, [])
+            algorithm = Algorithm(self.solution, [])
             print(algorithmType)
 
         else:
