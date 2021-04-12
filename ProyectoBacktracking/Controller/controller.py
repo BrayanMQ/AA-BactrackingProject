@@ -119,8 +119,8 @@ class Controller:
                 # This is going add the counter and a symbol to the string
                 restrictionString += "\n" + str(cont2) + "-"
 
-        # This is going to remove the last two characters
-        restrictionString = restrictionString[:-2]
+        # This is going to remove the last count
+        restrictionString = restrictionString[:-3]
 
         # This is going to insert the restriction to the restriction text area
         self.window.textRestriction.insert('insert', restrictionString)
