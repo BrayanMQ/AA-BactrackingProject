@@ -7,3 +7,11 @@ https://stackoverflow.com/questions/40641130/how-to-use-a-comboboxselected-virtu
 
 Enum: 
 https://www.youtube.com/watch?v=cen7oanRhYo
+https://docs.python.org/3/library/enum.html
+
+Comparación de listas
+https://www.lawebdelprogramador.com/foros/Python/1581596-listas-comparar-entre-dos-listas.html
+
+Backtracking:
+https://www.youtube.com/watch?v=y_FHKt3yy5E
+https://www.youtube.com/watch?v=QiIgZHVGqcI

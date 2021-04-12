@@ -66,6 +66,8 @@ class Window:
         self.comboboxALGOR = self.createComboBox(self.frame, 180, 540, 130, 35)
         self.comboboxALGOR["values"] = ["Backtracking", "Brute Force"]
         self.comboboxALGOR.bind("<<ComboboxSelected>>", self.actionCombobox)
+        self.comboboxALGOR.current(0)
+        self.comboboxALGOR.configure(state="readonly")
 
         # Buttons
         self.buttonSolution = self.createButtons(self.frame,"Generate Solution", self.controller.solutionFunction,
@@ -204,6 +206,7 @@ class Window:
             self.lblRestriction.configure(state="normal")
             self.textRestriction.configure(state="normal")
             self.buttonRestriction.configure(state="normal")
+            self.comboboxALGOR.configure(state="readonly")
             self.entryRES.configure(state="normal")
         else:
             self.textProcedure.configure(state="normal")
@@ -216,16 +219,21 @@ class Window:
         self.textRestriction.delete("1.0", "end")
         self.entryRES.delete(0, END)
         self.textProcedure.delete("1.0", "end")
+        self.lblTime.configure(text="Tiempo Ejecución: ")
+        self.comboboxALGOR.current(0)
         return
 
     def showMessagesBox(self, type):
 
         if type == 1:
-            messagebox.showerror("Error", "Debe ingresar la cantidad de restricciones a utilizar")
+            messagebox.showerror("Error", "Debe ingresar la cantidad de restricciones a utilizar.")
         elif type == 2:
             messagebox.showerror("Error", "Debe ingresar solamente numeros enteros mayores a '0' ")
+        elif type == 3:
+            messagebox.showerror("Error", "El número máximo de restricciones es '15'."
+                                          " Por favor ingrese una cantidad válida.")
         else:
-            messagebox.showerror("Error", "Debe seleccionar un tipo de algoritmo a utilizar")
+            messagebox.showerror("Error", "Debe seleccionar un tipo de algoritmo a utilizar.")
         return
 
     def actionCombobox(self, eventObject):

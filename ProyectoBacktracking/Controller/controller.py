@@ -3,7 +3,6 @@ from View.MainWindow import Window
 import random
 
 # Import de los enums
-import Model.enumCategories
 from Model.enumCategories import Categories
 from Model.Algorithm import Algorithm
 from timeit import default_timer
@@ -82,6 +81,13 @@ class Controller:
             return
         try:
             restrictionsAmount = int(self.window.entryRES.get())
+
+            if restrictionsAmount > 15:
+                self.window.showMessagesBox(3)
+                return
+            elif restrictionsAmount < 1:
+                self.window.showMessagesBox(2)
+                return
         except:
             self.window.showMessagesBox(2)
             return
@@ -128,12 +134,16 @@ class Controller:
         Outputs:
         '''
 
+        #It clears textProcedure
+        self.window.textProcedure.delete("1.0", "end")
+
         algorithm = None
+        restrictionListAux = self.restrictions[:]
 
         # This is going to select algorithm type
         algorithmType = self.window.comboboxALGOR.get()
         if algorithmType == "Backtracking":
-            algorithm = Algorithm(self.solution, self.restrictions)
+            algorithm = Algorithm(self.solution, restrictionListAux)
             print(algorithmType)
 
         elif algorithmType == "Brute Force":
@@ -185,6 +195,7 @@ class Controller:
         # This is going to clean solution and restriction List
         self.solution.clear()
         self.restrictions.clear()
+
 
         return
 
